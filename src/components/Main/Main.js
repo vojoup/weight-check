@@ -2,7 +2,7 @@ import React from 'react';
 
 const Main = () => (
   <div>
-    <p>Welcome to the main page</p>
+    <p style={{ color: 'white' }}>Welcome to the main page</p>
   </div>
 );
 

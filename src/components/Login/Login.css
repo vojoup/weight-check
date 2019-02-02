@@ -1,0 +1,25 @@
+:root {
+  --accent: rgb(65, 110, 168);
+}
+
+#login-center {
+  font-size: 4rem;
+  width: 100vh;
+  margin: 0 auto;
+}
+
+#login-center > button {
+  width: 200px;
+  height: 100px;
+  width: 40%;
+  font-size: inherit;
+  transition: all .6s ease-in-out;
+  border: none;
+}
+
+#login-center > button:hover {
+  cursor: pointer;
+  background-color: var(--accent);
+  border: 1px solid var(--accent);
+  border-radius: 25px;
+}

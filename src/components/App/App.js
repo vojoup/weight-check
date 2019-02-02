@@ -2,9 +2,10 @@ import React, { Component } from 'react';
 import netlifyIdentity from 'netlify-identity-widget';
 import './App.css';
 import { Route } from 'react-router-dom';
-import auth from '../AuthHOC/AuthHOC';
+import auth from '../../helpers/auth';
 
 import Main from '../Main/Main';
+import Button from '../Button/Button';
 
 import { loginUser, logoutUser } from '../../helpers/identityActions';
 
@@ -44,17 +45,9 @@ class App extends Component {
       <div>
         {user ? (
           <header>
-            <button type="button" onClick={this.handleLogOut}>
-              Logout
-            </button>
+            <Button type="button" onClick={this.handleLogOut} title="Logout" />
           </header>
-        ) : (
-          <header>
-            <button type="button" onClick={this.handleLogIn}>
-              Welcome
-            </button>
-          </header>
-        )}
+        ) : null}
         <section>
           <Route exact path="/" component={auth(Main)} />
         </section>
