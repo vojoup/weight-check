@@ -4,7 +4,6 @@
 
 main {
   text-align: center;
-  width: 100vh;
   padding: 2rem;
 }
 
@@ -13,7 +12,7 @@ thead {
 }
 
 table {
-  width: 100%;
+  width: 60vw;
   border-collapse: collapse;
   margin: 2rem;
 }

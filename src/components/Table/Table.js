@@ -1,18 +1,41 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
+import handleError from '../../helpers/handleError';
+
 export default class Table extends Component {
-  renderWeightRecords({ records }) {
-    return records.map(record => (
-      <tr>
-        <td>{record.date.substring(0, 10)}</td>
-        <td>{record.weight}</td>
-      </tr>
-    ));
+  constructor(props) {
+    super(props);
+    this.state = {
+      data: [],
+      err: '',
+    };
+    this.renderWeightRecords = this.renderWeightRecords.bind(this);
+  }
+
+  componentDidMount() {
+    this.renderWeightRecords();
+  }
+
+  renderWeightRecords() {
+    fetch('/.netlify/functions/records')
+      .then(response => response.json())
+      .then(records => {
+        if (!records.error) {
+          this.setState({ data: records });
+        } else {
+          console.log(records);
+          this.setState({ err: handleError(records.error) });
+        }
+      });
   }
 
   render() {
-    const { name, data } = this.props;
+    const { name } = this.props;
+    const { data, err } = this.state;
+    if (err) {
+      return <h2>{err}</h2>;
+    }
     return (
       <table>
         <caption>
@@ -25,10 +48,17 @@ export default class Table extends Component {
           </span>
         </caption>
         <thead>
-          <th>Date (yyy-mm-dd)</th>
-          <th>Weight (g)</th>
+          <tr>
+            <th>Date (yyy-mm-dd)</th>
+            <th>Weight (g)</th>
+          </tr>
         </thead>
-        {this.renderWeightRecords(data)}
+        {data.map(record => (
+          <tr key={record._id}>
+            <td>{record.date.substring(0, 10)}</td>
+            <td>{record.weight}</td>
+          </tr>
+        ))}
       </table>
     );
   }
@@ -36,5 +66,4 @@ export default class Table extends Component {
 
 Table.propTypes = {
   name: PropTypes.oneOf(['Monticek', 'Kulicek']).isRequired,
-  data: PropTypes.object.isRequired,
 };
