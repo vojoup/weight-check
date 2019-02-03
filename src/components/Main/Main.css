@@ -1,0 +1,34 @@
+:root {
+  --accent: rgb(65, 110, 168);
+}
+
+main {
+  text-align: center;
+  width: 100vh;
+  padding: 2rem;
+}
+
+thead {
+  background-color: var(--accent);
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 2rem;
+}
+
+td, th {
+  border: 1px solid #dddddd;
+  text-align: left;
+  padding: 8px;
+}
+
+table > caption {
+  margin: .4rem;
+  font-size: 2rem;
+}
+
+table tr:nth-child(even) {
+  background-color: rgba(160, 156, 156, 0.384);
+}
