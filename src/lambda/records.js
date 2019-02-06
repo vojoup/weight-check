@@ -13,7 +13,9 @@ export async function handler(event, context, callback) {
   try {
     await mongoose.connect(DB_URL, { useNewUrlParser: true });
     console.log(`Connected to DB!`);
-    const records = await Record.find();
+    const records = await Record.find()
+      .sort({ date: 'desc' })
+      .limit(10);
 
     console.log(records);
 
