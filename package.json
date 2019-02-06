@@ -3,6 +3,9 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@babel/plugin-transform-object-assign": "^7.2.0",
+    "D": "^1.0.0",
+    "babel-loader": "^8.0.5",
     "mongoose": "^5.4.9",
     "netlify-identity-widget": "^1.5.2",
     "prop-types": "^15.6.2",
