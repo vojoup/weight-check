@@ -10,6 +10,7 @@ export default class Table extends Component {
     this.state = {
       data: [],
       err: '',
+      loading: false,
     };
     this.renderWeightRecords = this.renderWeightRecords.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -51,6 +52,7 @@ export default class Table extends Component {
   }
 
   async renderWeightRecords(name = 'kulik') {
+    this.setState({ loading: true });
     try {
       const response = await fetch(
         `/.netlify/functions/records?name=${name.toLowerCase()}`
@@ -58,10 +60,10 @@ export default class Table extends Component {
       const recordsJson = await response.json();
 
       if (!recordsJson.error) {
-        this.setState({ data: recordsJson });
+        this.setState({ data: recordsJson, loading: false });
       } else {
         console.log(recordsJson);
-        this.setState({ err: handleError(recordsJson.error) });
+        this.setState({ err: handleError(recordsJson.error), loading: false });
       }
     } catch (err) {
       console.error(err);
@@ -70,34 +72,38 @@ export default class Table extends Component {
 
   render() {
     const { name } = this.props;
-    const { data, err } = this.state;
+    const { data, err, loading } = this.state;
     return (
       <>
-        <table>
-          <caption>
-            <span role="img" aria-label="boar emoji">
-              🐗
-            </span>
-            {name}
-            <span role="img" aria-label="boar emoji">
-              🐗
-            </span>
-          </caption>
-          <thead>
-            <tr>
-              <th>Date (yyy-mm-dd)</th>
-              <th>Weight (g)</th>
-            </tr>
-          </thead>
-          <tbody>
-            {data.map(record => (
-              <tr key={record._id}>
-                <td>{record.date.substring(0, 10)}</td>
-                <td>{record.weight}</td>
+        {loading ? (
+          <h2>Loading...</h2>
+        ) : (
+          <table>
+            <caption>
+              <span role="img" aria-label="boar emoji">
+                🐗
+              </span>
+              {name}
+              <span role="img" aria-label="boar emoji">
+                🐗
+              </span>
+            </caption>
+            <thead>
+              <tr>
+                <th>Date (yyy-mm-dd)</th>
+                <th>Weight (g)</th>
               </tr>
-            ))}
-          </tbody>
-        </table>
+            </thead>
+            <tbody>
+              {data.map(record => (
+                <tr key={record._id}>
+                  <td>{record.date.substring(0, 10)}</td>
+                  <td>{record.weight}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        )}
         <form onSubmit={this.handleSubmit}>
           <input
             type="number"
@@ -111,8 +117,8 @@ export default class Table extends Component {
         {data.length >= 1 ? (
           <RecordsChart name={name} records={data} />
         ) : (
-            <h3>No data to show</h3>
-          )}
+          <h3>No data to show</h3>
+        )}
       </>
     );
   }
