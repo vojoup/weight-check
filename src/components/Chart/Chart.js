@@ -8,11 +8,10 @@ import './Chart.css';
 ReactChartkick.addAdapter(Chart);
 
 const RecordsChart = ({ records }) => {
-  const result = records.reduce(function(obj, item) {
+  const result = records.reduce(function (obj, item) {
     obj[item.date] = item.weight;
     return obj;
   }, {});
-  console.log(result);
   return (
     <LineChart
       min={500}

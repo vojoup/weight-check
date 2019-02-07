@@ -16,18 +16,20 @@ export default class Table extends Component {
   }
 
   componentDidMount() {
-    this.renderWeightRecords();
+    const { name } = this.props;
+    this.renderWeightRecords(name.toLowerCase());
   }
 
   async handleSubmit(e) {
     e.preventDefault();
+    const { name } = this.props;
 
     const weightValue = this.weightInput.value;
     if (weightValue) {
       try {
         const request = await fetch('/.netlify/functions/addRecord', {
           method: 'POST',
-          body: JSON.stringify({ weight: weightValue }),
+          body: JSON.stringify({ weight: weightValue, name }),
         });
         const responseJson = await request.json();
 
@@ -35,9 +37,7 @@ export default class Table extends Component {
           this.setState(prevState => ({
             data: [responseJson, ...prevState.data],
           }));
-          console.log(responseJson);
         } else {
-          console.log(responseJson);
           this.setState({ err: handleError(responseJson.error) });
         }
       } catch (err) {
@@ -50,9 +50,11 @@ export default class Table extends Component {
     }
   }
 
-  async renderWeightRecords() {
+  async renderWeightRecords(name = 'kulik') {
     try {
-      const response = await fetch('/.netlify/functions/records');
+      const response = await fetch(
+        `/.netlify/functions/records?name=${name.toLowerCase()}`
+      );
       const recordsJson = await response.json();
 
       if (!recordsJson.error) {
@@ -69,7 +71,6 @@ export default class Table extends Component {
   render() {
     const { name } = this.props;
     const { data, err } = this.state;
-    console.log(data);
     return (
       <>
         <table>
@@ -88,12 +89,14 @@ export default class Table extends Component {
               <th>Weight (g)</th>
             </tr>
           </thead>
-          {data.map(record => (
-            <tr key={record._id}>
-              <td>{record.date.substring(0, 10)}</td>
-              <td>{record.weight}</td>
-            </tr>
-          ))}
+          <tbody>
+            {data.map(record => (
+              <tr key={record._id}>
+                <td>{record.date.substring(0, 10)}</td>
+                <td>{record.weight}</td>
+              </tr>
+            ))}
+          </tbody>
         </table>
         <form onSubmit={this.handleSubmit}>
           <input
@@ -109,13 +112,13 @@ export default class Table extends Component {
         {data.length >= 1 ? (
           <RecordsChart records={data} />
         ) : (
-          <h3>No data to show</h3>
-        )}
+            <h3>No data to show</h3>
+          )}
       </>
     );
   }
 }
 
 Table.propTypes = {
-  name: PropTypes.oneOf(['Monticek', 'Kulicek']).isRequired,
+  name: PropTypes.oneOf(['Montik', 'Kulik']).isRequired,
 };

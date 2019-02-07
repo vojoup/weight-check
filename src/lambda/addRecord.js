@@ -13,6 +13,7 @@ export async function handler(event, context, callback) {
   const newRecord = new Record({
     weight: data.weight,
     date: new Date().toISOString(),
+    name: data.name.toLowerCase(),
   });
 
   try {

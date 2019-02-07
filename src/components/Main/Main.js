@@ -7,8 +7,8 @@ class Main extends React.Component {
   render() {
     return (
       <main>
-        <Table name="Kulicek" />
-        {/* <Table name="Monticek" data={dataMontik} /> */}
+        <Table name="Kulik" />
+        <Table name="Montik" />
       </main>
     );
   }

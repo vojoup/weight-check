@@ -8,12 +8,16 @@ const { DB_URL } = process.env;
 export async function handler(event, context, callback) {
   context.callbackWaitsForEmptyEventLoop = false;
 
+  console.log(event);
+
   console.log('DB_URL', DB_URL);
 
   try {
     await mongoose.connect(DB_URL, { useNewUrlParser: true });
     console.log(`Connected to DB!`);
-    const records = await Record.find()
+    const records = await Record.find({
+      name: event.queryStringParameters.name,
+    })
       .sort({ date: 'desc' })
       .limit(10);
 
