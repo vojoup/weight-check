@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 
 import RecordsChart from '../Chart/Chart';
 import handleError from '../../helpers/handleError';
+import Button from '../Button/Button';
 
 export default class Table extends Component {
   constructor(props) {
@@ -111,7 +112,7 @@ export default class Table extends Component {
             placeholder="Enter today's weight"
             ref={input => (this.weightInput = input)}
           />
-          <button type="submit">Save</button>
+          <Button type="submit" title="Save" />
         </form>
         {err && <h3>{err}</h3>}
         <RecordsChart name={name} records={data} />
