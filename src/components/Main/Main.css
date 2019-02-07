@@ -12,7 +12,8 @@ thead {
 }
 
 table {
-  width: 60vw;
+  max-width: 100vw;
+  min-width: 70vw;
   border-collapse: collapse;
   margin: 2rem;
 }
@@ -30,4 +31,8 @@ table > caption {
 
 table tr:nth-child(even) {
   background-color: rgba(160, 156, 156, 0.384);
+}
+
+form {
+  margin: 1rem;
 }

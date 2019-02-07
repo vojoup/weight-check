@@ -110,10 +110,10 @@ export default class Table extends Component {
         </form>
         {err && <h3>{err}</h3>}
         {data.length >= 1 ? (
-          <RecordsChart records={data} />
+          <RecordsChart name={name} records={data} />
         ) : (
-            <h3>No data to show</h3>
-          )}
+          <h3>No data to show</h3>
+        )}
       </>
     );
   }

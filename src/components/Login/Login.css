@@ -23,3 +23,15 @@
   border: 1px solid var(--accent);
   border-radius: 25px;
 }
+
+@media only screen and (max-width: 414px) {
+  #login-center > button {
+    width: 20vw;
+    height: 10vh;
+    width: 40%;
+    font-size: inherit;
+    background-color: var(--accent);
+    border: 1px solid var(--accent);
+    border-radius: 25px;
+  }
+}
