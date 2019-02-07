@@ -102,7 +102,6 @@ export default class Table extends Component {
           <input
             type="number"
             name="weight"
-            step="100"
             placeholder="Enter today's weight"
             ref={input => (this.weightInput = input)}
           />
@@ -112,8 +111,8 @@ export default class Table extends Component {
         {data.length >= 1 ? (
           <RecordsChart name={name} records={data} />
         ) : (
-          <h3>No data to show</h3>
-        )}
+            <h3>No data to show</h3>
+          )}
       </>
     );
   }
