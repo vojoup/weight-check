@@ -114,11 +114,7 @@ export default class Table extends Component {
           <button type="submit">Save</button>
         </form>
         {err && <h3>{err}</h3>}
-        {data.length >= 1 ? (
-          <RecordsChart name={name} records={data} />
-        ) : (
-          <h3>No data to show</h3>
-        )}
+        <RecordsChart name={name} records={data} />
       </>
     );
   }
