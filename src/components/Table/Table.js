@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
+import RecordsChart from '../Chart/Chart';
 import handleError from '../../helpers/handleError';
 
 export default class Table extends Component {
@@ -105,6 +106,11 @@ export default class Table extends Component {
           <button type="submit">Save</button>
         </form>
         {err && <h3>{err}</h3>}
+        {data.length >= 1 ? (
+          <RecordsChart records={data} />
+        ) : (
+          <h3>No data to show</h3>
+        )}
       </>
     );
   }

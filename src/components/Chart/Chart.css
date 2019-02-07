@@ -1,0 +1,10 @@
+:root {
+  --accent: rgb(65, 110, 168);
+}
+
+#kulik {
+  background-color: azure;
+  padding: 1rem;
+  margin: 1rem;
+  max-width: 70vw;
+}
