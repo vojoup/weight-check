@@ -24,7 +24,7 @@ const RecordsChart = ({ records, name }) => {
       legend
       colors={[color]}
       label="Weight"
-      messages={{ empty: 'No data' }}
+      messages={{ empty: 'No data to be displayed' }}
       thousands=","
       suffix="g"
       data={{ ...result }}
