@@ -15,8 +15,8 @@ const RecordsChart = ({ records, name }) => {
   const color = name === 'Montik' ? '#416ea8' : '#2eb47b';
   return (
     <LineChart
-      min={500}
-      max={1500}
+      min={800}
+      max={1200}
       xtitle="Date"
       ytitle="Weight"
       curve
