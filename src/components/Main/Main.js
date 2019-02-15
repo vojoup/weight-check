@@ -1,6 +1,7 @@
 import React from 'react';
 
 import Table from '../Table/Table';
+import Link from '../Link/Link';
 import './Main.css';
 
 // Todo: Connect componet to router and navigate to detail page programatically!
@@ -9,9 +10,9 @@ class Main extends React.Component {
     return (
       <main>
         <Table name="Kulik" />
-        <a href="/detail/kulik">See more records for Kulik</a>
+        <Link to="/detail/kulik">See more records for Kulik</Link>
         <Table name="Montik" />
-        <a href="/detail/montik">See more records for Montik</a>
+        <Link to="/detail/montik">See more records for Montik</Link>
       </main>
     );
   }
