@@ -16,3 +16,21 @@ header {
   justify-content: flex-end;
   align-items: center; 
 }
+
+#logout {
+  margin: .6rem;
+  display: inline-block;
+  position: relative;
+  padding: 1rem;
+  top: 0;
+  font-family: "Open Sans", Helvetica;
+  border-radius: 4px;
+  background-color: rgb(102, 138, 185);
+  color: #fff;
+}
+
+#logout:hover {
+  top: 0;
+  box-shadow: none;
+  background-color: rgba(102, 138, 185, 0.671);
+}

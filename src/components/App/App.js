@@ -46,7 +46,13 @@ class App extends Component {
       <div>
         {user ? (
           <header>
-            <Button type="button" onClick={this.handleLogOut} title="Logout" />
+            <h1>Weight check</h1>
+            <Button
+              id="logout"
+              type="button"
+              onClick={this.handleLogOut}
+              title="Logout"
+            />
           </header>
         ) : null}
         <section>
