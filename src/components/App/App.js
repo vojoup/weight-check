@@ -47,18 +47,18 @@ class App extends Component {
         {user ? (
           <header>
             <h1>Weight check</h1>
-            <Button
-              id="logout"
-              type="button"
-              onClick={this.handleLogOut}
-              title="Logout"
-            />
+            <div className="header-left">
+              <Button
+                id="logout"
+                type="button"
+                onClick={this.handleLogOut}
+                title="Logout"
+              />
+            </div>
           </header>
         ) : null}
-        <section>
-          <Route exact path="/" component={auth(Main)} />
-          <Route exact path="/detail/:name" component={auth(Detail)} />
-        </section>
+        <Route exact path="/" component={auth(Main)} />
+        <Route exact path="/detail/:name" component={auth(Detail)} />
       </div>
     );
   }
