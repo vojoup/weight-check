@@ -16,6 +16,7 @@ header {
 
 header > h1 {
   float: left;
+  margin-left: 0.6rem;
 }
 
 .header-left {
