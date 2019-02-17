@@ -3,6 +3,8 @@
 }
 
 main {
+  margin: 2rem auto;
+  max-width: 1000px;
   text-align: center;
   padding: 2rem;
   display:flex;

@@ -8,9 +8,10 @@ const { DB_URL } = process.env;
 export async function handler(event, context, callback) {
   context.callbackWaitsForEmptyEventLoop = false;
 
-  console.log(event);
-
   console.log('DB_URL', DB_URL);
+  console.log(event.queryStringParameters);
+
+  const limit = +event.queryStringParameters.limit || 10;
 
   try {
     await mongoose.connect(DB_URL, { useNewUrlParser: true });
@@ -19,7 +20,7 @@ export async function handler(event, context, callback) {
       name: event.queryStringParameters.name,
     })
       .sort({ date: 'desc' })
-      .limit(10);
+      .limit(limit);
 
     console.log(records);
 

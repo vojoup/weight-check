@@ -11,13 +11,32 @@ body {
 header {
   background-color: var(--accent);
   width: 100%;
-  height: 3rem;
-  display:flex;
-  justify-content: flex-end;
-  align-items: center; 
+  height: 4.5rem;
 }
 
-header > button {
-  height: calc(3rem*2/3);
-  margin: .5rem 1rem;
+header > h1 {
+  float: left;
+  margin-left: 0.6rem;
+}
+
+.header-left {
+  float: right;
+}
+
+#logout {
+  margin: .6rem;
+  display: inline-block;
+  position: relative;
+  padding: 1rem;
+  top: 0;
+  font-family: "Open Sans", Helvetica;
+  border-radius: 4px;
+  background-color: rgb(102, 138, 185);
+  color: #fff;
+}
+
+#logout:hover {
+  top: 0;
+  box-shadow: none;
+  background-color: rgba(102, 138, 185, 0.671);
 }

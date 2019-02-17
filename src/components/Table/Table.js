@@ -18,8 +18,8 @@ export default class Table extends Component {
   }
 
   componentDidMount() {
-    const { name } = this.props;
-    this.renderWeightRecords(name.toLowerCase());
+    const { name, limit } = this.props;
+    this.renderWeightRecords(name.toLowerCase(), limit);
   }
 
   async handleSubmit(e) {
@@ -52,11 +52,11 @@ export default class Table extends Component {
     }
   }
 
-  async renderWeightRecords(name = 'kulik') {
+  async renderWeightRecords(name = 'kulik', limit = 10) {
     this.setState({ loading: true });
     try {
       const response = await fetch(
-        `/.netlify/functions/records?name=${name.toLowerCase()}`
+        `/.netlify/functions/records?name=${name.toLowerCase()}&limit=${+limit}`
       );
       const recordsJson = await response.json();
 
