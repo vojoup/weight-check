@@ -3,8 +3,8 @@ import React from 'react';
 import Table from '../Table/Table';
 import Link from '../Link/Link';
 import './Main.css';
+import PieChartCompare from '../PieChart/PieChart';
 
-// Todo: Connect componet to router and navigate to detail page programatically!
 class Main extends React.Component {
   render() {
     return (
@@ -13,6 +13,7 @@ class Main extends React.Component {
         <Link to="/detail/kulik">See more records for Kulik</Link>
         <Table name="Montik" />
         <Link to="/detail/montik">See more records for Montik</Link>
+        <PieChartCompare />
       </main>
     );
   }

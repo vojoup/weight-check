@@ -5,7 +5,6 @@ import ReactChartkick, { LineChart } from 'react-chartkick';
 import Chart from 'chart.js';
 
 import './Chart.css';
-import { type } from 'os';
 
 ReactChartkick.addAdapter(Chart);
 
@@ -21,7 +20,6 @@ const getMininum = records => {
   } else {
     return records.weight;
   }
-  console.log('Minimum is ', min);
   return min;
 };
 
@@ -43,7 +41,6 @@ const RecordsChart = ({ records, name }) => {
   const [min, setMin] = useState(0);
   const [max, setMax] = useState(0);
 
-
   useEffect(() => {
     if (records.length) {
       setMin(getMininum(records) - 50);
@@ -51,7 +48,7 @@ const RecordsChart = ({ records, name }) => {
     }
   }, [records]);
 
-  const result = records.reduce(function (obj, item) {
+  const result = records.reduce(function(obj, item) {
     obj[item.date] = item.weight;
     return obj;
   }, {});
@@ -79,9 +76,6 @@ const RecordsChart = ({ records, name }) => {
 export default RecordsChart;
 
 RecordsChart.propTypes = {
-  records: PropTypes.oneOfType([
-    PropTypes.array,
-    PropTypes.object
-  ]),
+  records: PropTypes.oneOfType([PropTypes.array, PropTypes.object]),
   name: PropTypes.string,
 };
