@@ -110,7 +110,7 @@ export default class Table extends Component {
                 }}
                 config={{
                   mass: 2,
-                  tension: 350,
+                  tension: 300,
                   friction: 30,
                   precision: 0.00001,
                 }}
