@@ -108,6 +108,12 @@ export default class Table extends Component {
                   opacity: 1,
                   transform: 'translate3d(0,0px,0)',
                 }}
+                config={{
+                  mass: 2,
+                  tension: 350,
+                  friction: 30,
+                  precision: 0.00001,
+                }}
               >
                 {record => styles => (
                   <tr style={styles} key={record._id}>
