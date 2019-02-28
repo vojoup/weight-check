@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Spring, Trail } from 'react-spring/renderprops';
 import PropTypes from 'prop-types';
 
 import RecordsChart from '../Chart/Chart';
@@ -96,12 +97,31 @@ export default class Table extends Component {
               </tr>
             </thead>
             <tbody>
-              {data.map(record => (
-                <tr key={record._id}>
-                  <td>{record.date.substring(0, 10)}</td>
-                  <td>{record.weight}</td>
-                </tr>
-              ))}
+              <Trail
+                items={data}
+                keys={record => record._id}
+                from={{
+                  opacity: 0,
+                  transform: 'translate3d(-100px,-40px,0)',
+                }}
+                to={{
+                  opacity: 1,
+                  transform: 'translate3d(0,0px,0)',
+                }}
+                config={{
+                  mass: 2,
+                  tension: 300,
+                  friction: 30,
+                  precision: 0.00001,
+                }}
+              >
+                {record => styles => (
+                  <tr style={styles} key={record._id}>
+                    <td>{record.date.substring(0, 10)}</td>
+                    <td>{record.weight}</td>
+                  </tr>
+                )}
+              </Trail>
             </tbody>
           </table>
         )}
