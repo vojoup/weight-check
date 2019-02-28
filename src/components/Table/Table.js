@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Trail } from 'react-spring/renderprops';
+import { Spring, Trail } from 'react-spring/renderprops';
 import PropTypes from 'prop-types';
 
 import RecordsChart from '../Chart/Chart';
@@ -100,8 +100,14 @@ export default class Table extends Component {
               <Trail
                 items={data}
                 keys={record => record._id}
-                from={{ opacity: 0, transform: 'translate3d(-100px,-40px,0)' }}
-                to={{ opacity: 1, transform: 'translate3d(0,0px,0)' }}
+                from={{
+                  opacity: 0,
+                  transform: 'translate3d(-100px,-40px,0)',
+                }}
+                to={{
+                  opacity: 1,
+                  transform: 'translate3d(0,0px,0)',
+                }}
               >
                 {record => styles => (
                   <tr style={styles} key={record._id}>

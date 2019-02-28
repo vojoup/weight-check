@@ -30,11 +30,7 @@ const PieChartCompare = () => {
             break;
         }
       }
-      setKulikWeight(1000);
-      setMontikWeight(1000);
     } catch (err) {
-      setKulikWeight(1000);
-      setMontikWeight(1000);
       console.error(err);
     }
   };
