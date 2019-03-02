@@ -88,7 +88,7 @@ const RecordsChart = ({ records, name }) => {
             pointShape: 'diamond',
             pointSize: 20,
             compare: true,
-            selectionMode: 'multiple',
+            selectionMode: 'selection',
             crosshair: {
               trigger: 'both',
               opacity: 0.5,
