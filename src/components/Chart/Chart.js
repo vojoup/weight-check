@@ -81,6 +81,8 @@ const RecordsChart = ({ records, name }) => {
     },
   ];
 
+  console.log(chartData);
+
   return (
     <>
       {records.length && <h3>Avereage weight: {average}</h3>}
