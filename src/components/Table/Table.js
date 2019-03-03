@@ -143,5 +143,5 @@ export default class Table extends Component {
 
 Table.propTypes = {
   name: PropTypes.oneOf(['Montik', 'Kulik']).isRequired,
-  limit: PropTypes.number.isRequired,
+  limit: PropTypes.number,
 };

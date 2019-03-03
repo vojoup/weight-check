@@ -74,7 +74,7 @@ const RecordsChart = ({ records, name }) => {
             title: 'The last 10 weight records',
             subtitle: 'in grams (g)',
             hAxis: { title: 'Date' },
-            vAxis: { title: 'Weight', minValue: min, maxValue: max },
+            vAxis: { title: 'Weight (g)', minValue: min, maxValue: max },
             legend: 'right',
             animation: {
               duration: 600,
@@ -97,6 +97,7 @@ const RecordsChart = ({ records, name }) => {
           }}
           loader={<div>Loading Chart</div>}
           data={data}
+          rootProps={{ className: name }}
         />
       )}
     </>
