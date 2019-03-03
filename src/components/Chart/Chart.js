@@ -23,6 +23,7 @@ const getMininum = records => {
 const getMaxinum = records => {
   let max;
   if (typeof records === typeof []) {
+    max = records[0].weight;
     records.forEach(record => {
       if (record.weight > max) {
         max = record.weight;
@@ -72,7 +73,7 @@ const RecordsChart = ({ records, name }) => {
             curveType: 'function',
             title: 'The last 10 weight records',
             subtitle: 'in grams (g)',
-            hAxis: { title: 'Date', direction: -1 },
+            hAxis: { title: 'Date' },
             vAxis: { title: 'Weight', minValue: min, maxValue: max },
             legend: 'right',
             animation: {
@@ -81,7 +82,7 @@ const RecordsChart = ({ records, name }) => {
               startup: true,
             },
             series: {
-              1: { pointSize: 5, pointShape: 'circle' },
+              1: { pointSize: 0, pointShape: 'circle' },
             },
             enableInteractivity: true,
             colors: [color, 'red'],
