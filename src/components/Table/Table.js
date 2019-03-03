@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Spring, Trail } from 'react-spring/renderprops';
+import { Trail } from 'react-spring/renderprops';
 import PropTypes from 'prop-types';
 
 import RecordsChart from '../Chart/Chart';
@@ -143,4 +143,5 @@ export default class Table extends Component {
 
 Table.propTypes = {
   name: PropTypes.oneOf(['Montik', 'Kulik']).isRequired,
+  limit: PropTypes.number,
 };

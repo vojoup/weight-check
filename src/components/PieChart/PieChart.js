@@ -1,10 +1,12 @@
 import React, { useEffect, useState } from 'react';
-import { animated, useSpring } from 'react-spring';
+import { animated } from 'react-spring';
 
-import ReactChartkick, { PieChart } from 'react-chartkick';
-import Chart from 'chart.js';
+import Chart from 'react-google-charts';
 
-ReactChartkick.addAdapter(Chart);
+// import ReactChartkick, { PieChart } from 'react-chartkick';
+// import Chart from 'chart.js';
+
+// ReactChartkick.addAdapter(Chart);
 
 const PieChartCompare = () => {
   const [initialized, setInitialized] = useState(false);
@@ -48,13 +50,26 @@ const PieChartCompare = () => {
       <h2>Comparison of weights</h2>
       <h3>Total weight: {montikWeight + kulikWeight}g</h3>
       <animated.div>
-        <PieChart
-          colors={['#2eb47b', '#416ea8']}
-          data={{
-            Kulik: kulikWeight,
-            Montik: montikWeight,
+        <Chart
+          // colors={['#2eb47b', '#416ea8']}
+          // data={{
+          //   Kulik: kulikWeight,
+          //   Montik: montikWeight,
+          // }}
+          // suffix="g"
+          chartType="PieChart"
+          loader={<div>Loading Chart</div>}
+          data={[
+            ['Name', 'Weight'],
+            ['Montik', montikWeight],
+            ['Kulik', kulikWeight],
+          ]}
+          width="500px"
+          height="300px"
+          options={{
+            legend: 'right',
+            title: 'Comparison of last weight records',
           }}
-          suffix="g"
         />
       </animated.div>
     </div>

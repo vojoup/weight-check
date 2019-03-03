@@ -1,12 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 
-import ReactChartkick, { LineChart } from 'react-chartkick';
-import Chart from 'chart.js';
+import Chart from 'react-google-charts';
 
 import './Chart.css';
-
-ReactChartkick.addAdapter(Chart);
 
 const getMininum = records => {
   let min;
@@ -26,6 +23,7 @@ const getMininum = records => {
 const getMaxinum = records => {
   let max;
   if (typeof records === typeof []) {
+    max = records[0].weight;
     records.forEach(record => {
       if (record.weight > max) {
         max = record.weight;
@@ -35,6 +33,19 @@ const getMaxinum = records => {
     return records.weight;
   }
   return max;
+};
+
+const formatRecords = records => {
+  const result = [['Date', 'Weight', 'Average']];
+  const total = records.reduce(
+    (acc, currentValue) => acc + currentValue.weight,
+    0
+  );
+  const average = total / records.length;
+  records.map(({ date, weight }) =>
+    result.push([new Date(date.substring(0, 10)), weight, average])
+  );
+  return result;
 };
 
 const RecordsChart = ({ records, name }) => {
@@ -48,28 +59,48 @@ const RecordsChart = ({ records, name }) => {
     }
   }, [records]);
 
-  const result = records.reduce(function(obj, item) {
-    obj[item.date] = item.weight;
-    return obj;
-  }, {});
+  const data = formatRecords(records);
   const color = name === 'Montik' ? '#416ea8' : '#2eb47b';
 
   return (
-    <LineChart
-      min={min}
-      max={max}
-      xtitle="Date"
-      ytitle="Weight"
-      curve
-      id={name.toLowerCase()}
-      legend
-      colors={[color]}
-      label="Weight"
-      messages={{ empty: 'No data to be displayed' }}
-      thousands=","
-      suffix="g"
-      data={{ ...result }}
-    />
+    <>
+      {records && (
+        <Chart
+          width="100%"
+          height="30vh"
+          chartType="LineChart"
+          options={{
+            curveType: 'function',
+            title: 'The last 10 weight records',
+            subtitle: 'in grams (g)',
+            hAxis: { title: 'Date' },
+            vAxis: { title: 'Weight (g)', minValue: min, maxValue: max },
+            legend: 'right',
+            animation: {
+              duration: 600,
+              easing: 'out',
+              startup: true,
+            },
+            series: {
+              1: { pointSize: 0, pointShape: 'circle' },
+            },
+            enableInteractivity: true,
+            colors: [color, 'red'],
+            pointShape: 'diamond',
+            pointSize: 20,
+            compare: true,
+            selectionMode: 'multiple',
+            crosshair: {
+              trigger: 'selection',
+              opacity: 0.5,
+            },
+          }}
+          loader={<div>Loading Chart</div>}
+          data={data}
+          rootProps={{ className: name }}
+        />
+      )}
+    </>
   );
 };
 
