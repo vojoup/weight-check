@@ -42,7 +42,7 @@ const formatRecords = records => {
   );
   const average = total / records.length;
   records.map(({ date, weight }) =>
-    result.push([date.substring(0, 10), weight, average])
+    result.push([new Date(date.substring(0, 10)), weight, average])
   );
   return result;
 };
