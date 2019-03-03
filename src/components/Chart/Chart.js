@@ -72,7 +72,7 @@ const RecordsChart = ({ records, name }) => {
             curveType: 'function',
             title: 'The last 10 weight records',
             subtitle: 'in grams (g)',
-            hAxis: { title: 'Date' },
+            hAxis: { title: 'Date', direction: -1 },
             vAxis: { title: 'Weight', minValue: min, maxValue: max },
             legend: 'right',
             animation: {
